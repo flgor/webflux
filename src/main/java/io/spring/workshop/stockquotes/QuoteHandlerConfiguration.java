@@ -8,8 +8,6 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-import static org.springframework.web.reactive.function.BodyInserters.fromObject;
-
 
 @Configuration
 public class QuoteHandlerConfiguration {
@@ -21,7 +19,7 @@ public class QuoteHandlerConfiguration {
     public RouterFunction<ServerResponse> helloWorldRoute() {
         RouterFunction<ServerResponse> helloWorldRoute =
                 RouterFunctions.route(RequestPredicates.path("/hello"),
-                        request -> ServerResponse.ok().body(fromObject("Hello World")));
+                        quoteHandler::streamQuotes);
         return helloWorldRoute;
     }
 }
